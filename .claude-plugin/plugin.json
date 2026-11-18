@@ -1,0 +1,36 @@
+{
+  "name": "openobserve",
+  "version": "0.1.0",
+  "description": "Use OpenObserve directly in Claude Code through a preconfigured OpenObserve MCP server. Query logs, metrics and traces with SQL and PromQL, and work with streams, dashboards and alerts through natural conversation.",
+  "author": {
+    "name": "OpenObserve",
+    "url": "https://openobserve.ai"
+  },
+  "homepage": "https://openobserve.ai",
+  "privacyPolicyUrl": "https://openobserve.ai/legal/privacy-policy/",
+  "repository": "https://github.com/openobserve/claude-code-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "observability",
+    "monitoring",
+    "logs",
+    "metrics",
+    "traces",
+    "sql",
+    "promql"
+  ],
+  "userConfig": {
+    "base_url": {
+      "type": "string",
+      "title": "OpenObserve URL",
+      "description": "Base URL of your OpenObserve instance, without a trailing slash. Cloud regions: https://cloud.openobserve.ai (US), https://eu1.openobserve.ai, https://ap1.openobserve.ai. Self-hosted: your own host, e.g. https://o2.example.com.",
+      "default": "https://cloud.openobserve.ai"
+    },
+    "org_id": {
+      "type": "string",
+      "title": "Organization ID",
+      "description": "The organization identifier shown in the OpenObserve UI (the org_identifier in the URL). Self-hosted single-org installs usually use 'default'.",
+      "default": "default"
+    }
+  }
+}
