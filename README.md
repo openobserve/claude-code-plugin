@@ -10,7 +10,8 @@ Use [OpenObserve](https://openobserve.ai) from Claude Code: query logs, metrics 
 ## Install
 
 ```
-/plugin install openobserve --marketplace openobserve/claude-code-plugin
+/plugin marketplace add openobserve/claude-code-plugin
+/plugin install openobserve@openobserve
 ```
 
 You will be asked for two values:
@@ -22,7 +23,15 @@ You will be asked for two values:
 
 Then run `/mcp`, pick `openobserve`, and complete the sign-in.
 
-Change the values later with `claude plugin configure openobserve`.
+From a shell, the same install with the values supplied up front:
+
+```
+claude plugin marketplace add openobserve/claude-code-plugin
+claude plugin install openobserve@openobserve \
+  --config base_url=https://cloud.openobserve.ai --config org_id=<your-org-id>
+```
+
+Change the values later with `/plugin configure openobserve@openobserve`.
 
 ## Permissions
 

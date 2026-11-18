@@ -1,0 +1,19 @@
+{
+  "name": "openobserve",
+  "owner": {
+    "name": "OpenObserve",
+    "url": "https://openobserve.ai"
+  },
+  "metadata": {
+    "description": "Official OpenObserve plugins for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "openobserve",
+      "source": "./",
+      "description": "Use OpenObserve directly in Claude Code through a preconfigured OpenObserve MCP server. Query logs, metrics and traces with SQL and PromQL, and work with streams, dashboards and alerts through natural conversation.",
+      "category": "monitoring",
+      "homepage": "https://openobserve.ai"
+    }
+  ]
+}
