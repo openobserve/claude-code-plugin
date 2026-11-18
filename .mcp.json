@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "openobserve": {
-      "type": "http",
-      "url": "${user_config.base_url}/api/${user_config.org_id}/mcp"
-    }
-  }
-}

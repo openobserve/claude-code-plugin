@@ -11,7 +11,7 @@
     {
       "name": "openobserve",
       "source": "./",
-      "description": "Use OpenObserve directly in Claude Code through a preconfigured OpenObserve MCP server. Query logs, metrics and traces with SQL and PromQL, and work with streams, dashboards and alerts through natural conversation.",
+      "description": "Connect Claude Code to OpenObserve. Guided setup of the MCP server for your cloud region or self-hosted instance, plus a schema-first skill for writing and validating SQL and PromQL over logs, metrics and traces.",
       "category": "monitoring",
       "homepage": "https://openobserve.ai"
     }

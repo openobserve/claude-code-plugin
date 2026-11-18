@@ -4,8 +4,8 @@ Use [OpenObserve](https://openobserve.ai) from Claude Code: query logs, metrics 
 
 ## What's included
 
-- **MCP server** (`openobserve`) — connects to the MCP endpoint built into your OpenObserve instance at `<base_url>/api/<org_id>/mcp`. Sign-in uses OAuth in your browser; no API key is stored by the plugin.
-- **Skill** (`sql-query`) — a schema-first workflow for writing and validating SQL and PromQL against your streams.
+- **`setup` skill** — connects Claude Code to the MCP server built into your OpenObserve instance. It asks for your cloud region or self-hosted URL and your organization, checks the endpoint, and registers it.
+- **`sql-query` skill** — a schema-first workflow for writing and validating SQL and PromQL against your streams.
 
 ## Install
 
@@ -14,24 +14,32 @@ Use [OpenObserve](https://openobserve.ai) from Claude Code: query logs, metrics 
 /plugin install openobserve@openobserve
 ```
 
-You will be asked for two values:
+## Connect your instance
 
-| Option | Example | Notes |
+In Claude Code, run:
+
+```
+/openobserve:setup
+```
+
+or just ask "connect OpenObserve". You will be asked for:
+
+| Value | Example | Notes |
 |---|---|---|
-| OpenObserve URL | `https://cloud.openobserve.ai` | Cloud: `cloud` (US), `eu1`, `ap1`. Self-hosted: your own host. No trailing slash. |
-| Organization ID | `default` | The org identifier shown in the OpenObserve UI. |
+| OpenObserve URL | `https://cloud.openobserve.ai` | Cloud: `cloud` (US), `eu1`, `ap1`. Self-hosted: your own host. |
+| Organization ID | `default` | The `org_identifier` shown in the OpenObserve UI address bar. |
 
-Then run `/mcp`, pick `openobserve`, and complete the sign-in.
+Then run `/mcp`, pick `openobserve`, and sign in. Sign-in uses OAuth in your browser; the plugin stores no credentials.
 
-From a shell, the same install with the values supplied up front:
+To do the same by hand:
 
 ```
-claude plugin marketplace add openobserve/claude-code-plugin
-claude plugin install openobserve@openobserve \
-  --config base_url=https://cloud.openobserve.ai --config org_id=<your-org-id>
+claude mcp add --transport http --scope user openobserve https://<host>/api/<org_id>/mcp
 ```
 
-Change the values later with `/plugin configure openobserve@openobserve`.
+## Why the server is not bundled
+
+Every OpenObserve organization has its own MCP address (`<host>/api/<org_id>/mcp`), and self-hosted instances live on their own hosts, so there is no single URL a plugin could ship. The setup skill registers your endpoint as an ordinary user-level MCP server, which you can inspect or remove with `claude mcp list` and `claude mcp remove openobserve`.
 
 ## Permissions
 

@@ -9,7 +9,8 @@ description: >
 
 # SQL & PromQL queries for OpenObserve
 
-Queries run through the `openobserve` MCP server. Depending on the server
+Queries run through the OpenObserve MCP server. If no OpenObserve tools are
+available in this session, run the `setup` skill first. Depending on the server
 version, tools such as `StreamList`, `StreamSchema`, `SearchSQL` and
 `PrometheusRangeQuery` are exposed directly, or are found with `tool_search`
 and run with `tools_call`. Use whichever form the server offers.
