@@ -4,8 +4,18 @@ Use [OpenObserve](https://openobserve.ai) from Claude Code: query logs, metrics 
 
 ## What's included
 
-- **`setup` skill** — connects Claude Code to the MCP server built into your OpenObserve instance. It asks for your cloud region or self-hosted URL and your organization, checks the endpoint, and registers it.
-- **`sql-query` skill** — a schema-first workflow for writing and validating SQL and PromQL against your streams.
+| Skill | What it does |
+|---|---|
+| `setup` | Connects Claude Code to the MCP server built into your OpenObserve instance. Asks for your cloud region or self-hosted URL and your organization, checks the endpoint, and registers it. |
+| `sql-query` | Schema-first workflow for writing and validating SQL and PromQL against your streams. |
+| `dashboard-creation` | Builds and edits dashboards: layout grid, chart types, panel JSON, and the panel-level tools. |
+| `alert-creation` | Creates and edits alerts and alert destinations, with sensible defaults. |
+| `pipeline-creation` | Designs data pipelines: source and destination streams, functions and conditions. |
+| `vrl-scripts` | Writes and validates VRL functions for parsing and transforming data. |
+| `spl-conversion` | Converts Splunk SPL searches to OpenObserve SQL. |
+| `openobserve-instrument` | Instruments an LLM or AI-agent app to send OpenTelemetry traces to OpenObserve. |
+
+The skills are adapted from the [`@openobserve/skills`](https://www.npmjs.com/package/@openobserve/skills) package (version 1.2.1) for use in Claude Code.
 
 ## Install
 
@@ -36,6 +46,12 @@ To do the same by hand:
 ```
 claude mcp add --transport http --scope user openobserve https://<host>/api/<org_id>/mcp
 ```
+
+## What the skills can run
+
+- `setup` runs `claude mcp list`, one unauthenticated `curl` probe of the endpoint you name, and `claude mcp add`.
+- `openobserve-instrument` edits your project, installs OpenTelemetry packages, and runs `scripts/preflight.py` (Python standard library only), which sends an empty trace batch to your OpenObserve instance to check the credentials in your `.env`. For supported Python SDKs it downloads the OpenObserve installer from a pinned commit of [`openobserve/o2-datasource`](https://github.com/openobserve/o2-datasource) and runs it only if its SHA-256 matches the value in the skill.
+- The other skills only call OpenObserve MCP tools.
 
 ## Why the server is not bundled
 

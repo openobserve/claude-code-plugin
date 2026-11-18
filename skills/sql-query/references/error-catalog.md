@@ -26,5 +26,6 @@
 | Symptom | Cause | Fix |
 |---------|-------|-----|
 | "Missing required fields" | Arguments omitted | Read the tool's input schema and supply every required argument |
-| `SearchSQL` returns nothing or wrong results | Guessed or missing arguments | Look up the current `SearchSQL` schema before calling it |
+| `SearchSQL` returns nothing or wrong results | Guessed or missing arguments | Read the `SearchSQL` input schema and pass `org_id`, `type`, and `request_body.query` with `sql`, `start_time`, `end_time` (microseconds) |
+| "Invalid histogram interval" | A bare number passed to `histogram()` | Use a quoted duration such as `'5 minutes'`, or omit the interval |
 | Tool not found | The tool is not exposed directly by this server version | Find it with `tool_search` and run it with `tools_call` |

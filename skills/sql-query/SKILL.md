@@ -22,8 +22,8 @@ against a stream whose schema you have not seen in this conversation.
 
 1. **Find the stream.** If the user did not name one, list streams
    (`StreamList`) for the right type: `logs`, `metrics` or `traces`.
-2. **Fetch the schema.** Call `StreamSchema` with `org_id`, `stream_name` and
-   `type`. Skip this only when the schema is already in the conversation.
+2. **Fetch the schema.** Call `StreamSchema` with `stream_name` and `type`
+   (and `org_id` when the tool asks for it). Skip this only when the schema is already in the conversation.
 3. **Choose fields.**
    - If the stream has a User-Defined Schema (UDS), use only UDS fields. It is
      the source of truth and overrides auto-detected fields.
@@ -31,10 +31,13 @@ against a stream whose schema you have not seen in this conversation.
    - Field names are case-sensitive. Note data types and which fields are
      indexed.
 4. **Write the query** using only field names from step 3.
-5. **Validate.** Check the current `SearchSQL` input schema, then call it with
-   `validate: true` and every required argument (at minimum `sql`,
-   `start_time`, `end_time`, `org_id`, `stream_name`). Do not guess or omit
-   arguments: missing ones cause silent failures or wrong results.
+5. **Validate by running it.** Call `SearchSQL` over a short time range with a
+   small `size`. Read its input schema first and pass every required argument:
+   `org_id` (when the schema has it; some server versions take the organization
+   from the server URL), `type` (`logs`, `metrics` or `traces`), and
+   `request_body.query` with `sql`, `start_time` and `end_time`. Times are microseconds since the
+   epoch and cannot be zero. The server rejects invalid SQL, so a successful
+   response means the query is valid. Do not guess or omit arguments.
 6. **Fix or stop.** If validation fails, read the error, fix the query and
    validate again. Stop after three attempts, or as soon as the same error
    appears twice, and show the user the error and the last query.
@@ -53,7 +56,7 @@ Use only log_level, service, msg. Ignore level, service_name, message.
 ## Time range
 
 Do not put the time range in the SQL. It is supplied outside the query: as
-`start_time` / `end_time` on `SearchSQL`, or by the time picker when the query
+`start_time` / `end_time` (microseconds) on `SearchSQL`, or by the time picker when the query
 is pasted into the OpenObserve UI or a dashboard panel. A time predicate in the
 SQL filters the data twice.
 

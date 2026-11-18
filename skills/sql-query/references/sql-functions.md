@@ -16,8 +16,12 @@
 - `spath(json_field, 'path.to.value')` - Extract from JSON
 
 ## Aggregation
-- `histogram(field, 'interval')` - Time bucketing (interval: second/minute/hour/day/week)
-- `histogram(field, num)` - Auto-bucket into num buckets
+- `histogram(field, 'interval')` - Time bucketing. The interval is a quoted
+  duration string: `'30 seconds'`, `'5 minutes'`, `'1 hour'`, `'1 day'`,
+  `'1 week'`. A bare number is rejected ("Invalid histogram interval"), so
+  never pass a bucket count and never pass microseconds here — this is the one
+  place a time value is NOT microseconds.
+- `histogram(field)` - Time bucketing with the interval chosen for you
 - Standard: `COUNT()`, `SUM()`, `AVG()`, `MIN()`, `MAX()`, `APPROX_PERCENTILE_CONT()`
 
 ## Time operations

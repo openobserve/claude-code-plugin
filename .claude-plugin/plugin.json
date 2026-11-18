@@ -1,7 +1,7 @@
 {
   "name": "openobserve",
-  "version": "0.2.0",
-  "description": "Connect Claude Code to OpenObserve. Guided setup of the MCP server for your cloud region or self-hosted instance, plus a schema-first skill for writing and validating SQL and PromQL over logs, metrics and traces.",
+  "version": "0.3.0",
+  "description": "Connect Claude Code to OpenObserve. Guided setup of the MCP server for your cloud region or self-hosted instance, plus skills for SQL and PromQL queries, dashboards, alerts, pipelines, VRL functions, Splunk SPL conversion and instrumenting AI apps.",
   "author": {
     "name": "OpenObserve",
     "url": "https://openobserve.ai"
@@ -11,12 +11,17 @@
   "repository": "https://github.com/openobserve/claude-code-plugin",
   "license": "Apache-2.0",
   "keywords": [
-    "observability",
-    "monitoring",
+    "alerts",
+    "dashboards",
     "logs",
     "metrics",
-    "traces",
+    "monitoring",
+    "observability",
+    "opentelemetry",
+    "pipelines",
+    "promql",
     "sql",
-    "promql"
+    "traces",
+    "vrl"
   ]
 }
