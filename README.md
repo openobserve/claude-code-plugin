@@ -13,9 +13,8 @@ Use [OpenObserve](https://openobserve.ai) from Claude Code: query logs, metrics 
 | `pipeline-creation` | Designs data pipelines: source and destination streams, functions and conditions. |
 | `vrl-scripts` | Writes and validates VRL functions for parsing and transforming data. |
 | `spl-conversion` | Converts Splunk SPL searches to OpenObserve SQL. |
-| `openobserve-instrument` | Instruments an LLM or AI-agent app to send OpenTelemetry traces to OpenObserve. |
 
-The skills are adapted from the [`@openobserve/skills`](https://www.npmjs.com/package/@openobserve/skills) package (version 1.2.1) for use in Claude Code.
+The skills are adapted from the [`@openobserve/skills`](https://www.npmjs.com/package/@openobserve/skills) package (version 1.2.1) for use in Claude Code. That package also has a skill for instrumenting LLM and AI-agent apps, which ships a helper script and so is not part of this plugin.
 
 ## Install
 
@@ -50,7 +49,6 @@ claude mcp add --transport http --scope user openobserve https://<host>/api/<org
 ## What the skills can run
 
 - `setup` runs `claude mcp list`, one unauthenticated `curl` probe of the endpoint you name, and `claude mcp add`.
-- `openobserve-instrument` edits your project, installs OpenTelemetry packages, and runs `scripts/preflight.py` (Python standard library only), which sends an empty trace batch to your OpenObserve instance to check the credentials in your `.env`. For supported Python SDKs it downloads the OpenObserve installer from a pinned commit of [`openobserve/o2-datasource`](https://github.com/openobserve/o2-datasource) and runs it only if its SHA-256 matches the value in the skill.
 - The other skills only call OpenObserve MCP tools.
 
 ## Why the server is not bundled

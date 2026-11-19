@@ -11,7 +11,7 @@
     {
       "name": "openobserve",
       "source": "./",
-      "description": "Connect Claude Code to OpenObserve. Guided setup of the MCP server for your cloud region or self-hosted instance, plus skills for SQL and PromQL queries, dashboards, alerts, pipelines, VRL functions, Splunk SPL conversion and instrumenting AI apps.",
+      "description": "Connect Claude Code to OpenObserve. Guided setup of the MCP server for your cloud region or self-hosted instance, plus skills for SQL and PromQL queries, dashboards, alerts, pipelines, VRL functions and Splunk SPL conversion.",
       "category": "monitoring",
       "homepage": "https://openobserve.ai"
     }
